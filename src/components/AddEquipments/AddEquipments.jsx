@@ -1,3 +1,4 @@
+import Swal from "sweetalert2";
 const AddEquipments = () => {
   const handleAddEquipment = (e) => {
     e.preventDefault();
@@ -28,6 +29,28 @@ const AddEquipments = () => {
       rating,
     };
     console.log(newEquipment);
+
+    fetch("http://localhost:5000/equipments", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(newEquipment),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.insertedId) {
+          Swal.fire({
+            title: "Success!",
+            text: "Equipment added successfully",
+            icon: "success",
+            confirmButtonText: "Cool",
+          });
+        } else {
+          console.error("Unexpected response:", data);
+        }
+      });
   };
   return (
     <div className="w-11/12 mx-auto p-6">
