@@ -2,7 +2,7 @@ import { useLoaderData } from "react-router-dom";
 import EquipmentCard from "../EquipmentCard/EquipmentCard";
 
 const AllEquipments = () => {
-  const equipments = useLoaderData(); // Fetch data from the loader
+  const equipments = useLoaderData();
 
   if (!equipments.length) {
     return <p className="text-center">No equipment available.</p>;

@@ -4,6 +4,7 @@ import Home from "../components/Home/Home";
 import Errorpage from "../components/Errorpage/Errorpage";
 import AddEquipments from "../components/AddEquipments/AddEquipments";
 import AllEquipments from "../components/AllEquipments/AllEquipments";
+import Details from "../components/Details/Details";
 
 const router = createBrowserRouter([
   {
@@ -15,7 +16,7 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
-        loader: () => fetch("http://localhost:5000/equipments"),
+        loader: () => fetch("http://localhost:5000/equipments/home"),
       },
       {
         path: "/AddEquipments",
@@ -25,6 +26,17 @@ const router = createBrowserRouter([
         path: "/AllEquipments",
         element: <AllEquipments></AllEquipments>,
         loader: () => fetch("http://localhost:5000/equipments"),
+      },
+      {
+        path: "/details/:_id",
+        element: <Details></Details>,
+        loader: async ({ params }) => {
+          const res = await fetch(
+            `http://localhost:5000/equipments/${params._id}`
+          );
+          const data = await res.json();
+          return data;
+        },
       },
     ],
   },
