@@ -1,6 +1,42 @@
+import { useEffect, useState, useContext } from "react";
+import { authContext } from "../AuthProvider/AuthProvider";
 import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
+  const { user, loading, handleLogout } = useContext(authContext);
+  const [userDetails, setUserDetails] = useState(null);
+
+  useEffect(() => {
+    if (user?.email) {
+      fetch(`http://localhost:5000/users?email=${user.email}`)
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Failed to fetch user details");
+          }
+          return response.json();
+        })
+        .then((data) => {
+          setUserDetails(data);
+        })
+        .catch((error) => console.error("Error fetching user details:", error));
+    }
+  }, [user]);
+
+  useEffect(() => {
+    console.log(user);
+  }, [user]);
+
+  if (loading) {
+    return (
+      <div className="navbar bg-[#c4bbaf]">
+        <div className="navbar-center">Loading...</div>
+      </div>
+    );
+  }
+
+  const displayName = user?.displayName;
+  const photoURL = user?.photoURL;
+
   return (
     <div>
       <div className="navbar bg-[#c4bbaf]">
@@ -75,44 +111,47 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="navbar-end">
-          <div className="">
-            {/* {user?.email ? (
-              <div className="flex justify-between items-center">
-                <div className="dropdown dropdown-end">
-                  <div
-                    tabIndex={0}
-                    role="button"
-                    className="btn btn-ghost btn-circle avatar relative"
-                  >
-                    <div className="w-10 h-10 rounded-full overflow-hidden">
-                      <img src="" className="object-cover w-full h-full" />
-                    </div>
+          {user?.email && userDetails ? (
+            <div className="flex justify-between items-center">
+              <div className="dropdown dropdown-end">
+                <div
+                  tabIndex={0}
+                  role="button"
+                  className="btn btn-ghost btn-circle avatar relative"
+                >
+                  <div className="w-10 h-10 rounded-full overflow-hidden">
+                    <img
+                      src={photoURL}
+                      title={displayName}
+                      className="object-cover w-full h-full"
+                    />
                   </div>
-                  <ul
-                    tabIndex={0}
-                    className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
-                  >
-                    <li>
-                      <NavLink to="/profile">Profile</NavLink>
-                    </li>
-                  </ul>
                 </div>
-                <div>
-                  <button className="btn bg-base-100  hover:bg-[#766153] font-bold hover:text-white">
-                    Logout
-                  </button>
-                </div>
+                <ul
+                  tabIndex={0}
+                  className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+                >
+                  <li>
+                    <NavLink to="/profile">Profile</NavLink>
+                  </li>
+                </ul>
               </div>
-            ) : ( */}
-            <div>
-              <NavLink to="/login">
-                <a className="btn bg-base-100  hover:bg-[#766153] font-bold hover:text-white">
-                  Login
-                </a>
-              </NavLink>
+              <div>
+                <button
+                  className="btn bg-base-100  hover:bg-[#766153] font-bold hover:text-white"
+                  onClick={handleLogout}
+                >
+                  Logout
+                </button>
+              </div>
             </div>
-            {/* )} */}
-          </div>
+          ) : (
+            <NavLink to="/login">
+              <a className="btn bg-base-100 hover:bg-[#766153] font-bold hover:text-white">
+                Login
+              </a>
+            </NavLink>
+          )}
         </div>
       </div>
     </div>

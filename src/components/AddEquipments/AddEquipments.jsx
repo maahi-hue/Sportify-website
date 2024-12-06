@@ -1,5 +1,14 @@
+import { useContext } from "react";
 import Swal from "sweetalert2";
+import { authContext } from "../AuthProvider/AuthProvider";
+
 const AddEquipments = () => {
+  const { user, loading } = useContext(authContext);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
   const handleAddEquipment = (e) => {
     e.preventDefault();
 
@@ -12,9 +21,10 @@ const AddEquipments = () => {
     const customization = form.customization.value;
     const processingTime = form.processingTime.value;
     const stock = form.stock.value;
-    const userEmail = form.userEmail.value;
-    const userName = form.userName.value;
+    const userEmail = user.email;
+    const userName = user.displayName || user.email.split("@")[0];
     const rating = form.rating.value;
+
     const newEquipment = {
       image,
       itemName,
@@ -28,7 +38,6 @@ const AddEquipments = () => {
       userName,
       rating,
     };
-    console.log(newEquipment);
 
     fetch("http://localhost:5000/equipments", {
       method: "POST",
@@ -39,7 +48,6 @@ const AddEquipments = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         if (data.insertedId) {
           Swal.fire({
             title: "Success!",
@@ -48,23 +56,29 @@ const AddEquipments = () => {
             confirmButtonText: "Cool",
           });
         } else {
-          console.error("Unexpected response:", data);
+          Swal.fire({
+            title: "Error!",
+            text: "Failed to add equipment",
+            icon: "error",
+            confirmButtonText: "Try Again",
+          });
         }
       });
   };
+
   return (
     <div className="w-11/12 mx-auto p-6">
       <h1 className="text-3xl font-bold text-center mb-6">Add Equipments</h1>
       <form onSubmit={handleAddEquipment}>
         <div className="md:flex gap-6 w-10/12 mx-auto">
           <div className="space-y-3 w-full">
-            <label className="input input-bordered flex items-center gap-2 ">
+            <label className="input input-bordered flex items-center gap-2">
               Image
               <input
                 type="text"
                 name="image"
                 className="grow"
-                placeholder="Image URL:https://5r76K34/career.jpg"
+                placeholder="Image URL: https://example.com/image.jpg"
               />
             </label>
             <label className="input input-bordered flex items-center gap-2">
@@ -73,7 +87,7 @@ const AddEquipments = () => {
                 type="text"
                 name="itemName"
                 className="grow"
-                placeholder=" Bat"
+                placeholder="Bat"
               />
             </label>
             <label className="input input-bordered flex items-center gap-2">
@@ -135,10 +149,11 @@ const AddEquipments = () => {
             <label className="input input-bordered flex items-center gap-2">
               User Email
               <input
-                type="text"
+                type="email"
                 name="userEmail"
-                className="grow"
-                placeholder="abc@gmail.com"
+                value={user.email}
+                className="grow bg-gray-200"
+                readOnly
               />
             </label>
             <label className="input input-bordered flex items-center gap-2">
@@ -146,8 +161,9 @@ const AddEquipments = () => {
               <input
                 type="text"
                 name="userName"
-                className="grow"
-                placeholder="abc"
+                value={user.displayName || user.email.split("@")[0]}
+                className="grow bg-gray-200"
+                readOnly
               />
             </label>
           </div>
