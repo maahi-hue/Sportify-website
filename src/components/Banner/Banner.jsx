@@ -18,7 +18,6 @@ const Banner = () => {
             Your One-Stop Shop for Sports Gear
           </h1>
           <p className="mb-2">
-            {" "}
             Top-quality equipment for athletes of all levels.
           </p>
         </Slide>

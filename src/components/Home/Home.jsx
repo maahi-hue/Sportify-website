@@ -3,6 +3,8 @@ import EquipmentCard from "../EquipmentCard/EquipmentCard";
 import { useState } from "react";
 import Banner from "../Banner/Banner";
 import WhyChooseUs from "../WhyChooseUs/WhyChooseUs";
+import SportsJourney from "../SportsJourney/SportsJourney";
+import { Slide } from "react-awesome-reveal";
 
 const Home = () => {
   const equipments = useLoaderData();
@@ -26,7 +28,9 @@ const Home = () => {
   return (
     <div className="mx-10">
       <Banner></Banner>
-      <h1 className="text-3xl font-bold text-center mb-10">Equipments</h1>
+      <Slide>
+        <h1 className="text-3xl font-bold text-center mb-10">Equipments</h1>
+      </Slide>
       <div className="flex">
         <div className="w-1/4 p-4 border-r border-gray-300">
           <h2 className="text-xl font-bold mb-4">Categories</h2>
@@ -53,6 +57,7 @@ const Home = () => {
         </div>
       </div>
       <WhyChooseUs />
+      <SportsJourney />
     </div>
   );
 };
