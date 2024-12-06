@@ -60,6 +60,17 @@ const Register = () => {
     }
   };
 
+  const googleLoginHandler = () => {
+    handleGoogleLogin()
+      .then(() => {
+        toast.success("Login Successful!");
+        navigate(location.state?.from || "/");
+      })
+      .catch((err) => {
+        toast.error(err.message || "An error occurred during login.");
+      });
+  };
+
   return (
     <div className="w-5/12 mx-auto p-6">
       <form onSubmit={handleSubmit}>
@@ -122,21 +133,8 @@ const Register = () => {
           </NavLink>
         </p>
         <p className="mt-2 font-semibold">
-          Or sign up with{" "}
-          <button
-            className="text-red-600"
-            type="button"
-            onClick={async () => {
-              try {
-                await handleGoogleLogin();
-                toast.success("Google login successful!");
-                navigate("/profile");
-              } catch (err) {
-                console.error("Google login error:", err.message);
-                toast.error("Google login failed. Please try again.");
-              }
-            }}
-          >
+          Or sign up with
+          <button className="text-red-600" onClick={googleLoginHandler}>
             Google Account
           </button>
         </p>

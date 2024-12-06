@@ -8,22 +8,19 @@ const Navbar = () => {
 
   useEffect(() => {
     if (user?.email) {
-      fetch(`http://localhost:5000/users?email=${user.email}`)
+      fetch(`http://localhost:5000/equipments?email=${user.email}`)
         .then((response) => {
           if (!response.ok) {
-            throw new Error("Failed to fetch user details");
+            throw new Error("Failed to fetch equipment data");
           }
           return response.json();
         })
         .then((data) => {
-          setUserDetails(data);
+          console.log("Fetched equipments:", data);
+          setUserDetails(data); // Or handle the data as required
         })
-        .catch((error) => console.error("Error fetching user details:", error));
+        .catch((error) => console.error("Error fetching equipments:", error));
     }
-  }, [user]);
-
-  useEffect(() => {
-    console.log(user);
   }, [user]);
 
   if (loading) {
@@ -34,60 +31,30 @@ const Navbar = () => {
     );
   }
 
-  const displayName = user?.displayName;
-  const photoURL = user?.photoURL;
-
   return (
-    <div>
-      <div className="navbar bg-[#c4bbaf]">
-        <div className="navbar-start">
-          <div className="dropdown">
-            <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M4 6h16M4 12h8m-8 6h16"
-                />
-              </svg>
-            </div>
-            <ul
-              tabIndex={0}
-              className="space-x-2 menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+    <div className="navbar bg-[#c4bbaf]">
+      <div className="navbar-start">
+        <div className="dropdown">
+          <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-5 w-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
             >
-              <NavLink
-                to="/"
-                className={({ isActive }) =>
-                  isActive
-                    ? "btn bg-[#766153] font-bold text-white"
-                    : "btn bg-base-100 font-bold"
-                }
-              >
-                Home
-              </NavLink>
-              <NavLink
-                to="/contactUs"
-                className={({ isActive }) =>
-                  isActive
-                    ? "btn bg-[#766153] font-bold text-white"
-                    : "btn bg-base-100 font-bold"
-                }
-              >
-                Contact Us
-              </NavLink>
-            </ul>
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M4 6h16M4 12h8m-8 6h16"
+              />
+            </svg>
           </div>
-          <a className="btn btn-ghost text-xl">EquiSports</a>
-        </div>
-        <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1 space-x-2">
+          <ul
+            tabIndex={0}
+            className="space-x-2 menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+          >
             <NavLink
               to="/"
               className={({ isActive }) =>
@@ -110,49 +77,91 @@ const Navbar = () => {
             </NavLink>
           </ul>
         </div>
-        <div className="navbar-end">
-          {user?.email && userDetails ? (
-            <div className="flex justify-between items-center">
-              <div className="dropdown dropdown-end">
-                <div
-                  tabIndex={0}
-                  role="button"
-                  className="btn btn-ghost btn-circle avatar relative"
-                >
-                  <div className="w-10 h-10 rounded-full overflow-hidden">
-                    <img
-                      src={photoURL}
-                      title={displayName}
-                      className="object-cover w-full h-full"
-                    />
-                  </div>
+        <a className="btn btn-ghost text-xl">EquiSports</a>
+      </div>
+      <div className="navbar-center hidden lg:flex">
+        <ul className="menu menu-horizontal px-1 space-x-2">
+          <NavLink
+            to="/"
+            className={({ isActive }) =>
+              isActive
+                ? "btn bg-[#766153] font-bold text-white"
+                : "btn bg-base-100 font-bold"
+            }
+          >
+            Home
+          </NavLink>
+          <NavLink
+            to="/AllEquipments"
+            className={({ isActive }) =>
+              isActive
+                ? "btn bg-[#766153] font-bold text-white"
+                : "btn bg-base-100 font-bold"
+            }
+          >
+            All Sports Equipments
+          </NavLink>
+          <NavLink
+            to="/AddEquipments"
+            className={({ isActive }) =>
+              isActive
+                ? "btn bg-[#766153] font-bold text-white"
+                : "btn bg-base-100 font-bold"
+            }
+          >
+            Add Equipment
+          </NavLink>
+          <NavLink
+            to="/MyEquipments"
+            className={({ isActive }) =>
+              isActive
+                ? "btn bg-[#766153] font-bold text-white"
+                : "btn bg-base-100 font-bold"
+            }
+          >
+            My Equipment List
+          </NavLink>
+        </ul>
+      </div>
+      <div className="navbar-end">
+        {user ? (
+          <div className="flex justify-between items-center">
+            <div className="dropdown dropdown-end">
+              <div
+                tabIndex={0}
+                role="button"
+                className="btn btn-ghost btn-circle avatar relative"
+              >
+                <div className="w-10 h-10 rounded-full overflow-hidden">
+                  <img
+                    src={userDetails?.photoURL}
+                    title={userDetails?.displayName}
+                    className="object-cover w-full h-full"
+                  />
                 </div>
-                <ul
-                  tabIndex={0}
-                  className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
-                >
-                  <li>
-                    <NavLink to="/profile">Profile</NavLink>
-                  </li>
-                </ul>
-              </div>
-              <div>
-                <button
-                  className="btn bg-base-100  hover:bg-[#766153] font-bold hover:text-white"
-                  onClick={handleLogout}
-                >
-                  Logout
-                </button>
               </div>
             </div>
-          ) : (
+            <button
+              className="btn bg-base-100 hover:bg-[#766153] font-bold hover:text-white"
+              onClick={handleLogout}
+            >
+              Logout
+            </button>
+          </div>
+        ) : (
+          <>
             <NavLink to="/login">
-              <a className="btn bg-base-100 hover:bg-[#766153] font-bold hover:text-white">
+              <button className="btn bg-base-100 hover:bg-[#766153] font-bold hover:text-white">
                 Login
-              </a>
+              </button>
             </NavLink>
-          )}
-        </div>
+            <NavLink to="/register">
+              <button className="btn bg-base-100 hover:bg-[#766153] font-bold hover:text-white">
+                Register
+              </button>
+            </NavLink>
+          </>
+        )}
       </div>
     </div>
   );
