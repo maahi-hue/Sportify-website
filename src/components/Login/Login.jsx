@@ -62,20 +62,20 @@ const Login = () => {
         </label>
         <button
           type="submit"
-          className="btn bg-base-100  hover:bg-[#766153] font-bold hover:text-white w-full mt-2"
+          className="btn bg-base-100  hover:bg-[#354f52] hover:text-[#cad2c5] font-bold w-full mt-2"
         >
           Login
         </button>
         {error && <p className="text-red-500">{error}</p>}
         <p className="mt-2 font-semibold">
-          Not Registered?
+          Not Registered?{" "}
           <NavLink className="text-red-600" to="/register">
             Register here
           </NavLink>
         </p>
 
         <p className="mt-2 font-semibold">
-          Login using
+          Login using{" "}
           <button className="text-red-600" onClick={googleLoginHandler}>
             Google Account
           </button>

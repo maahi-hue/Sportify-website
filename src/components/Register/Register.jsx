@@ -122,7 +122,7 @@ const Register = () => {
         </div>
         <button
           type="submit"
-          className="btn bg-base-100 hover:bg-[#766153] font-bold hover:text-white w-full mt-2"
+          className="btn bg-base-100 hover:bg-[#354f52] hover:text-[#cad2c5] font-bold w-full mt-2"
         >
           Register
         </button>
@@ -133,7 +133,7 @@ const Register = () => {
           </NavLink>
         </p>
         <p className="mt-2 font-semibold">
-          Or sign up with
+          Or sign up with{" "}
           <button className="text-red-600" onClick={googleLoginHandler}>
             Google Account
           </button>

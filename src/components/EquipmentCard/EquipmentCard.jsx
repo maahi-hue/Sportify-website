@@ -8,13 +8,13 @@ const EquipmentCard = ({ equipment }) => {
         <figure>
           <img src={image} />
         </figure>
-        <div className="card-body">
-          <h2 className="card-title">{itemName}</h2>
-          <p>{categoryName}</p>
+        <div className="card-body text-sm text-center">
+          <h2 className="text-2xl font-bold">{itemName}</h2>
+          <p>Category: {categoryName}</p>
           <p>{description}</p>
           <div className="card-actions justify-center">
             <NavLink to={`/details/${_id}`}>
-              <button className="btn hover:border-gray-500">
+              <button className="btn hover:bg-[#cad2c5] hover:text-[#2f3e46] font-bold">
                 View Details
               </button>
             </NavLink>

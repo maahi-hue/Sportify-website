@@ -17,7 +17,7 @@ const Navbar = () => {
         })
         .then((data) => {
           console.log("Fetched equipments:", data);
-          setUserDetails(data); // Or handle the data as required
+          setUserDetails(data);
         })
         .catch((error) => console.error("Error fetching equipments:", error));
     }
@@ -32,7 +32,7 @@ const Navbar = () => {
   }
 
   return (
-    <div className="navbar bg-[#c4bbaf]">
+    <div className="navbar bg-[#2f3e46] text-white">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -59,21 +59,41 @@ const Navbar = () => {
               to="/"
               className={({ isActive }) =>
                 isActive
-                  ? "btn bg-[#766153] font-bold text-white"
+                  ? "btn bg-[#cad2c5] font-bold text-[#2f3e46]"
                   : "btn bg-base-100 font-bold"
               }
             >
               Home
             </NavLink>
             <NavLink
-              to="/contactUs"
+              to="/AllEquipments"
               className={({ isActive }) =>
                 isActive
-                  ? "btn bg-[#766153] font-bold text-white"
+                  ? "btn bg-[#cad2c5] font-bold text-[#2f3e46]"
                   : "btn bg-base-100 font-bold"
               }
             >
-              Contact Us
+              All Sports Equipments
+            </NavLink>
+            <NavLink
+              to="/AddEquipments"
+              className={({ isActive }) =>
+                isActive
+                  ? "btn bg-[#cad2c5] font-bold text-[#2f3e46]"
+                  : "btn bg-base-100 font-bold"
+              }
+            >
+              Add Equipment
+            </NavLink>
+            <NavLink
+              to="/MyEquipments"
+              className={({ isActive }) =>
+                isActive
+                  ? "btn bg-[#cad2c5] font-bold text-[#2f3e46]"
+                  : "btn bg-base-100 font-bold"
+              }
+            >
+              My Equipment List
             </NavLink>
           </ul>
         </div>
@@ -85,7 +105,7 @@ const Navbar = () => {
             to="/"
             className={({ isActive }) =>
               isActive
-                ? "btn bg-[#766153] font-bold text-white"
+                ? "btn bg-[#cad2c5] font-bold text-[#2f3e46]"
                 : "btn bg-base-100 font-bold"
             }
           >
@@ -95,7 +115,7 @@ const Navbar = () => {
             to="/AllEquipments"
             className={({ isActive }) =>
               isActive
-                ? "btn bg-[#766153] font-bold text-white"
+                ? "btn bg-[#cad2c5] font-bold text-[#2f3e46]"
                 : "btn bg-base-100 font-bold"
             }
           >
@@ -105,7 +125,7 @@ const Navbar = () => {
             to="/AddEquipments"
             className={({ isActive }) =>
               isActive
-                ? "btn bg-[#766153] font-bold text-white"
+                ? "btn bg-[#cad2c5] font-bold text-[#2f3e46]"
                 : "btn bg-base-100 font-bold"
             }
           >
@@ -115,7 +135,7 @@ const Navbar = () => {
             to="/MyEquipments"
             className={({ isActive }) =>
               isActive
-                ? "btn bg-[#766153] font-bold text-white"
+                ? "btn bg-[#cad2c5] font-bold text-[#2f3e46]"
                 : "btn bg-base-100 font-bold"
             }
           >
@@ -142,7 +162,7 @@ const Navbar = () => {
               </div>
             </div>
             <button
-              className="btn bg-base-100 hover:bg-[#766153] font-bold hover:text-white"
+              className="btn bg-base-100 hover:bg-[#cad2c5] font-bold hover:text-[#2f3e46]"
               onClick={handleLogout}
             >
               Logout
@@ -151,12 +171,12 @@ const Navbar = () => {
         ) : (
           <>
             <NavLink to="/login">
-              <button className="btn bg-base-100 hover:bg-[#766153] font-bold hover:text-white">
+              <button className="btn bg-base-100 hover:bg-[#cad2c5] font-bold hover:text-[#2f3e46]">
                 Login
               </button>
             </NavLink>
             <NavLink to="/register">
-              <button className="btn bg-base-100 hover:bg-[#766153] font-bold hover:text-white">
+              <button className="btn bg-base-100 hover:bg-[#cad2c5] font-bold hover:text-[#2f3e46]">
                 Register
               </button>
             </NavLink>

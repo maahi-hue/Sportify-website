@@ -182,7 +182,7 @@ const AddEquipments = () => {
         <input
           type="submit"
           value="Add Equipment"
-          className="btn font-bold my-6 block mx-auto w-10/12 hover:border-gray-500"
+          className="btn my-6 block mx-auto w-10/12 hover:bg-[#354f52] hover:text-[#cad2c5] font-bold"
         />
       </form>
     </div>

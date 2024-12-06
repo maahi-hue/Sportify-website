@@ -129,7 +129,7 @@ const Update = () => {
           />
         </div>
         <NavLink to={`/update/${equipment._id}`}>
-          <button className="btn bg-yellow-500 text-white px-3 py-1 rounded">
+          <button className="btn bg-base-100 text-white hover:bg-[#354f52] hover:text-[#cad2c5] font-bold px-3 py-1 rounded">
             Update
           </button>
         </NavLink>
