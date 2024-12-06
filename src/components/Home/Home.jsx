@@ -1,20 +1,55 @@
 import { useLoaderData } from "react-router-dom";
 import EquipmentCard from "../EquipmentCard/EquipmentCard";
 import Banner from "../Banner/Banner";
+import { useState } from "react";
 
 const Home = () => {
   const equipments = useLoaderData();
+  const [filteredEquipments, setFilteredEquipments] = useState(equipments);
+
+  const categories = [
+    "All",
+    ...new Set(equipments.map((equipment) => equipment.categoryName)),
+  ];
+
+  const handleCategoryClick = (category) => {
+    if (category === "All") {
+      setFilteredEquipments(equipments);
+    } else {
+      setFilteredEquipments(
+        equipments.filter((equipment) => equipment.categoryName === category)
+      );
+    }
+  };
+
   return (
     <div className="m-20">
       <Banner></Banner>
-      <h1 className="text-3xl font-bold text-center">Equipments</h1>
-      <div className="grid md:grid-cols-2 grid-cols-1 gap-6 p-6 mx-auto w-11/12 ">
-        {equipments.map((equipment) => (
-          <EquipmentCard
-            key={equipment._id}
-            equipment={equipment}
-          ></EquipmentCard>
-        ))}
+      <h1 className="text-3xl font-bold text-center mb-10">Equipments</h1>
+      <div className="flex">
+        <div className="w-1/4 p-4 border-r border-gray-300">
+          <h2 className="text-xl font-bold mb-4">Categories</h2>
+          <ul className="space-y-3">
+            {categories.map((category, index) => (
+              <li key={index}>
+                <button
+                  onClick={() => handleCategoryClick(category)}
+                  className="w-full py-2 px-4 text-left font-semibold bg-gray-100 rounded hover:bg-[#766153] hover:text-white"
+                >
+                  {category}
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className="w-3/4 grid md:grid-cols-2 grid-cols-1 gap-6 p-6 mx-auto">
+          {filteredEquipments.map((equipment) => (
+            <EquipmentCard
+              key={equipment._id}
+              equipment={equipment}
+            ></EquipmentCard>
+          ))}
+        </div>
       </div>
     </div>
   );

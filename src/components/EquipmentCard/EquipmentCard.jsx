@@ -4,7 +4,7 @@ const EquipmentCard = ({ equipment }) => {
   const { _id, image, itemName, categoryName, description } = equipment;
   return (
     <div>
-      <div className="card card-side bg-base-100 shadow-xl h-[270px] p-6">
+      <div className="card card-side bg-base-100 shadow-xl h-[290px] p-6">
         <figure>
           <img src={image} />
         </figure>
