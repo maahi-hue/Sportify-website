@@ -1,6 +1,7 @@
 import { useEffect, useState, useContext } from "react";
 import { authContext } from "../AuthProvider/AuthProvider";
 import { NavLink } from "react-router-dom";
+import ThemeToggle from "../ThemeToggle/ThemeToggle";
 
 const Navbar = () => {
   const { user, loading, handleLogout } = useContext(authContext);
@@ -98,6 +99,7 @@ const Navbar = () => {
           </ul>
         </div>
         <a className="btn btn-ghost text-xl">EquiSports</a>
+        <ThemeToggle></ThemeToggle>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1 space-x-2">

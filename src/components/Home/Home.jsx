@@ -41,7 +41,7 @@ const Home = () => {
               <li key={index}>
                 <button
                   onClick={() => handleCategoryClick(category)}
-                  className="w-full py-2 px-4 text-left font-semibold bg-gray-100 rounded hover:bg-[#cad2c5] hover:text-[#2f3e46] "
+                  className="w-full py-2 px-4 text-left font-semibold bg-base-100 rounded hover:bg-[#cad2c5] hover:text-[#2f3e46] "
                 >
                   {category}
                 </button>

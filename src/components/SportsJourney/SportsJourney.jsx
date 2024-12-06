@@ -28,7 +28,9 @@ const SportsJourney = () => {
   ];
 
   return (
-    <div className="bg-gray-50 py-10">
+    <div className="bg-base-100 py-10">
+      <hr />
+      <br />
       <div className="w-11/12 mx-auto">
         <Slide>
           <h1 className="text-3xl font-bold text-center mb-6">

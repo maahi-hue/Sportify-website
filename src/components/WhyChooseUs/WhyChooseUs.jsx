@@ -5,7 +5,7 @@ import customization from "../../assets/customization.json";
 import { Slide } from "react-awesome-reveal";
 const WhyChooseUs = () => {
   return (
-    <section className="py-12 ">
+    <div className="py-12 bg-base-100">
       <div className="container mx-auto text-center">
         <Slide>
           <h2 className="text-3xl font-bold mb-6">Why Choose Us?</h2>
@@ -32,7 +32,7 @@ const WhyChooseUs = () => {
           </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 
