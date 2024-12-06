@@ -9,6 +9,7 @@ import MyEquipments from "../components/MyEquipments/MyEquipments";
 import Update from "../components/Update/Update";
 import Login from "../components/Login/Login";
 import Register from "../components/Register/Register";
+import PrivateRoute from "../components/PrivateRoute/PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -24,16 +25,28 @@ const router = createBrowserRouter([
       },
       {
         path: "/AddEquipments",
-        element: <AddEquipments></AddEquipments>,
+        element: (
+          <PrivateRoute>
+            <AddEquipments></AddEquipments>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/AllEquipments",
-        element: <AllEquipments></AllEquipments>,
+        element: (
+          <PrivateRoute>
+            <AllEquipments></AllEquipments>
+          </PrivateRoute>
+        ),
         loader: () => fetch("http://localhost:5000/equipments"),
       },
       {
         path: "/details/:_id",
-        element: <Details></Details>,
+        element: (
+          <PrivateRoute>
+            <Details></Details>
+          </PrivateRoute>
+        ),
         loader: async ({ params }) => {
           const res = await fetch(
             `http://localhost:5000/equipments/${params._id}`
@@ -44,7 +57,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/myEquipments",
-        element: <MyEquipments></MyEquipments>,
+        element: (
+          <PrivateRoute>
+            <MyEquipments></MyEquipments>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/update/:_id",
