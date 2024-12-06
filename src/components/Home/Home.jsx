@@ -1,7 +1,7 @@
 import { useLoaderData } from "react-router-dom";
 import EquipmentCard from "../EquipmentCard/EquipmentCard";
-import Banner from "../Banner/Banner";
 import { useState } from "react";
+import Banner from "../Banner/Banner";
 
 const Home = () => {
   const equipments = useLoaderData();
@@ -23,7 +23,7 @@ const Home = () => {
   };
 
   return (
-    <div className="m-20">
+    <div className="mx-10">
       <Banner></Banner>
       <h1 className="text-3xl font-bold text-center mb-10">Equipments</h1>
       <div className="flex">
