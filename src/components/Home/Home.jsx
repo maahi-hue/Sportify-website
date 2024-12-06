@@ -2,6 +2,7 @@ import { useLoaderData } from "react-router-dom";
 import EquipmentCard from "../EquipmentCard/EquipmentCard";
 import { useState } from "react";
 import Banner from "../Banner/Banner";
+import WhyChooseUs from "../WhyChooseUs/WhyChooseUs";
 
 const Home = () => {
   const equipments = useLoaderData();
@@ -51,6 +52,7 @@ const Home = () => {
           ))}
         </div>
       </div>
+      <WhyChooseUs />
     </div>
   );
 };
