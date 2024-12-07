@@ -1,35 +1,42 @@
 import { useContext, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { authContext } from "../AuthProvider/AuthProvider";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import Swal from "sweetalert2";
 
 const Register = () => {
   const { handleGoogleLogin, handleRegister } = useContext(authContext);
-  const [error, setError] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError("");
     const name = e.target.name.value;
     const email = e.target.email.value;
     const password = e.target.password.value;
 
+    // Password validations with SweetAlert
     if (password.length < 6) {
-      setError("Password length must be at least 6 characters.");
-      toast.error("Password length must be at least 6 characters.");
+      Swal.fire({
+        icon: "error",
+        title: "Invalid Password",
+        text: "Password length must be at least 6 characters.",
+      });
       return;
     }
     if (!/[a-z]/.test(password)) {
-      setError("Password must contain at least one lowercase letter.");
-      toast.error("Password must contain at least one lowercase letter.");
+      Swal.fire({
+        icon: "error",
+        title: "Invalid Password",
+        text: "Password must contain at least one lowercase letter.",
+      });
       return;
     }
     if (!/[A-Z]/.test(password)) {
-      setError("Password must contain at least one uppercase letter.");
-      toast.error("Password must contain at least one uppercase letter.");
+      Swal.fire({
+        icon: "error",
+        title: "Invalid Password",
+        text: "Password must contain at least one uppercase letter.",
+      });
       return;
     }
 
@@ -51,23 +58,38 @@ const Register = () => {
       const data = await response.json();
       console.log("User created:", data);
 
-      toast.success("Registration successful!");
+      Swal.fire({
+        icon: "success",
+        title: "Registration Successful!",
+        text: "Your account has been created.",
+      });
       navigate("/login");
     } catch (err) {
       console.error("Registration error:", err.message);
-      setError("Registration failed. Please try again.");
-      toast.error("Registration failed. Please try again.");
+      Swal.fire({
+        icon: "error",
+        title: "Registration Failed",
+        text: "Something went wrong. Please try again.",
+      });
     }
   };
 
   const googleLoginHandler = () => {
     handleGoogleLogin()
       .then(() => {
-        toast.success("Login Successful!");
+        Swal.fire({
+          icon: "success",
+          title: "Login Successful!",
+          text: "You are now logged in with Google.",
+        });
         navigate(location.state?.from || "/");
       })
       .catch((err) => {
-        toast.error(err.message || "An error occurred during login.");
+        Swal.fire({
+          icon: "error",
+          title: "Login Failed",
+          text: err.message || "An error occurred during login.",
+        });
       });
   };
 
@@ -139,7 +161,6 @@ const Register = () => {
           </button>
         </p>
       </form>
-      {error && <p className="text-red-500 mt-2">{error}</p>}
     </div>
   );
 };

@@ -1,11 +1,19 @@
-import { NavLink } from "react-router-dom";
 import { useLoaderData, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import Swal from "sweetalert2";
 
 const Update = () => {
   const equipment = useLoaderData();
   const navigate = useNavigate();
-  const [updatedEquipment, setUpdatedEquipment] = useState(equipment);
+
+  // Ensure the state is correctly initialized
+  const [updatedEquipment, setUpdatedEquipment] = useState({});
+
+  useEffect(() => {
+    if (equipment) {
+      setUpdatedEquipment(equipment); // Load data into state
+    }
+  }, [equipment]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -15,6 +23,8 @@ const Update = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    const { _id, ...updatePayload } = updatedEquipment;
+
     const res = await fetch(
       `http://localhost:5000/equipments/${equipment._id}`,
       {
@@ -22,17 +32,32 @@ const Update = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(updatedEquipment),
+        body: JSON.stringify(updatePayload),
       }
     );
 
     if (res.ok) {
-      alert("Equipment updated successfully!");
-      navigate("/MyEquipments");
+      Swal.fire({
+        title: "Success!",
+        text: "Equipment updated successfully.",
+        icon: "success",
+        confirmButtonText: "OK",
+      }).then(() => {
+        navigate("/MyEquipments");
+      });
     } else {
-      alert("Failed to update equipment. Please try again.");
+      Swal.fire({
+        title: "Error!",
+        text: "Failed to update equipment. Please try again.",
+        icon: "error",
+        confirmButtonText: "Try Again",
+      });
     }
   };
+
+  if (!updatedEquipment || !updatedEquipment._id) {
+    return <div>Loading...</div>; // Handle loading state
+  }
 
   return (
     <div className="m-10 p-10 bg-gray-100 shadow-lg rounded-lg">
@@ -43,7 +68,7 @@ const Update = () => {
           <input
             type="text"
             name="itemName"
-            value={updatedEquipment.itemName}
+            value={updatedEquipment.itemName || ""}
             onChange={handleChange}
             className="w-full p-2 border rounded"
             required
@@ -54,7 +79,7 @@ const Update = () => {
           <input
             type="text"
             name="categoryName"
-            value={updatedEquipment.categoryName}
+            value={updatedEquipment.categoryName || ""}
             onChange={handleChange}
             className="w-full p-2 border rounded"
           />
@@ -63,7 +88,7 @@ const Update = () => {
           <label className="block mb-1 font-semibold">Description</label>
           <textarea
             name="description"
-            value={updatedEquipment.description}
+            value={updatedEquipment.description || ""}
             onChange={handleChange}
             className="w-full p-2 border rounded"
           />
@@ -71,9 +96,8 @@ const Update = () => {
         <div>
           <label className="block mb-1 font-semibold">Price</label>
           <input
-            type="number"
             name="price"
-            value={updatedEquipment.price}
+            value={updatedEquipment.price || ""}
             onChange={handleChange}
             className="w-full p-2 border rounded"
           />
@@ -83,7 +107,7 @@ const Update = () => {
           <input
             type="text"
             name="customization"
-            value={updatedEquipment.customization}
+            value={updatedEquipment.customization || ""}
             onChange={handleChange}
             className="w-full p-2 border rounded"
           />
@@ -93,7 +117,7 @@ const Update = () => {
           <input
             type="text"
             name="processingTime"
-            value={updatedEquipment.processingTime}
+            value={updatedEquipment.processingTime || ""}
             onChange={handleChange}
             className="w-full p-2 border rounded"
           />
@@ -103,7 +127,7 @@ const Update = () => {
           <input
             type="number"
             name="stock"
-            value={updatedEquipment.stock}
+            value={updatedEquipment.stock || ""}
             onChange={handleChange}
             className="w-full p-2 border rounded"
           />
@@ -113,7 +137,7 @@ const Update = () => {
           <input
             type="email"
             name="userEmail"
-            value={updatedEquipment.userEmail}
+            value={updatedEquipment.userEmail || ""}
             className="w-full p-2 border rounded bg-gray-200"
             readOnly
           />
@@ -123,16 +147,17 @@ const Update = () => {
           <input
             type="text"
             name="userName"
-            value={updatedEquipment.userName}
+            value={updatedEquipment.userName || ""}
             className="w-full p-2 border rounded bg-gray-200"
             readOnly
           />
         </div>
-        <NavLink to={`/update/${equipment._id}`}>
-          <button className="btn bg-base-100 text-white hover:bg-[#354f52] hover:text-[#cad2c5] font-bold px-3 py-1 rounded">
-            Update
-          </button>
-        </NavLink>
+        <button
+          type="submit"
+          className="btn bg-base-100 hover:bg-[#354f52] hover:text-[#cad2c5] font-bold px-3 py-1 rounded"
+        >
+          Update
+        </button>
       </form>
     </div>
   );

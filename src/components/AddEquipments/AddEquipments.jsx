@@ -1,16 +1,18 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import Swal from "sweetalert2";
 import { authContext } from "../AuthProvider/AuthProvider";
 
 const AddEquipments = () => {
-  const { user, loading } = useContext(authContext);
+  const { user, loading: authLoading } = useContext(authContext);
+  const [loading, setLoading] = useState(false);
 
-  if (loading) {
+  if (authLoading) {
     return <div>Loading...</div>;
   }
 
   const handleAddEquipment = (e) => {
     e.preventDefault();
+    setLoading(true);
 
     const form = e.target;
     const image = form.image.value;
@@ -48,6 +50,7 @@ const AddEquipments = () => {
     })
       .then((res) => res.json())
       .then((data) => {
+        setLoading(false);
         if (data.insertedId) {
           Swal.fire({
             title: "Success!",
@@ -55,6 +58,7 @@ const AddEquipments = () => {
             icon: "success",
             confirmButtonText: "Cool",
           });
+          form.reset();
         } else {
           Swal.fire({
             title: "Error!",
@@ -63,13 +67,26 @@ const AddEquipments = () => {
             confirmButtonText: "Try Again",
           });
         }
+      })
+      .catch(() => {
+        setLoading(false);
+        Swal.fire({
+          title: "Error!",
+          text: "Something went wrong. Please try again.",
+          icon: "error",
+          confirmButtonText: "Try Again",
+        });
       });
   };
 
   return (
     <div className="w-11/12 mx-auto p-6">
       <h1 className="text-3xl font-bold text-center mb-6">Add Equipments</h1>
-      <form onSubmit={handleAddEquipment}>
+      {loading && <div className="text-center mb-4">Loading...</div>}{" "}
+      <form
+        onSubmit={handleAddEquipment}
+        className={loading ? "opacity-50 pointer-events-none" : ""}
+      >
         <div className="md:flex gap-6 w-10/12 mx-auto">
           <div className="space-y-3 w-full">
             <label className="input input-bordered flex items-center gap-2">
@@ -183,6 +200,7 @@ const AddEquipments = () => {
           type="submit"
           value="Add Equipment"
           className="btn my-6 block mx-auto w-10/12 hover:bg-[#354f52] hover:text-[#cad2c5] font-bold"
+          disabled={loading}
         />
       </form>
     </div>

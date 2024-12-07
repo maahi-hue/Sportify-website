@@ -1,8 +1,8 @@
 /* index.css */
 :root {
-  --bg-primary: #cad2c5; /* Main background color */
-  --bg-secondary: white; /* Alternative background color */
-  --text-color: black; /* Text color */
+  --bg-primary: #cad2c5; 
+  --bg-secondary: white; 
+  --text-color: black; 
 }
 
 [data-theme="dark"] {
@@ -17,9 +17,3 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Sections using alternative backgrounds */
-.banner {
-  background-color: var(--bg-primary);
-  color: var(--text-color);
-  transition: background-color 0.3s ease, color 0.3s ease;
-}

@@ -1,11 +1,10 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
 import { authContext } from "../AuthProvider/AuthProvider";
+import Swal from "sweetalert2";
 
 const Login = () => {
   const { handleGoogleLogin, handleLogin } = useContext(authContext);
-  const [error, setError] = useState("");
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -16,22 +15,42 @@ const Login = () => {
 
     handleLogin(email, password)
       .then(() => {
-        toast.success("Login Successful!");
+        Swal.fire({
+          icon: "success",
+          title: "Login Successful!",
+          timer: 2000,
+          showConfirmButton: false,
+        });
         navigate(location.state?.from || "/");
       })
       .catch((err) => {
-        toast.error(err.message || "An error occurred during login.");
+        const errorMessage = err.message || "Invalid email or password.";
+        Swal.fire({
+          icon: "error",
+          title: "Login Failed",
+          text: errorMessage,
+        });
       });
   };
 
   const googleLoginHandler = () => {
     handleGoogleLogin()
       .then(() => {
-        toast.success("Login Successful!");
+        Swal.fire({
+          icon: "success",
+          title: "Login Successful!",
+          timer: 2000,
+          showConfirmButton: false,
+        });
         navigate(location.state?.from || "/");
       })
       .catch((err) => {
-        toast.error(err.message || "An error occurred during login.");
+        const errorMessage = err.message || "An error occurred during login.";
+        Swal.fire({
+          icon: "error",
+          title: "Login Failed",
+          text: errorMessage,
+        });
       });
   };
 
@@ -66,7 +85,6 @@ const Login = () => {
         >
           Login
         </button>
-        {error && <p className="text-red-500">{error}</p>}
         <p className="mt-2 font-semibold">
           Not Registered?{" "}
           <NavLink className="text-red-600" to="/register">
