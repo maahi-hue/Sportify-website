@@ -20,8 +20,14 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Home></Home>,
-        loader: () => fetch("http://localhost:5000/equipments/home"),
+        element: <Home />,
+        loader: async () => {
+          const response = await fetch("http://localhost:5000/equipments");
+          if (!response.ok) {
+            throw new Error("Failed to fetch equipments");
+          }
+          return response.json();
+        },
       },
       {
         path: "/AddEquipments",

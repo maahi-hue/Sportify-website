@@ -5,13 +5,11 @@ import Swal from "sweetalert2";
 const Update = () => {
   const equipment = useLoaderData();
   const navigate = useNavigate();
-
-  // Ensure the state is correctly initialized
   const [updatedEquipment, setUpdatedEquipment] = useState({});
 
   useEffect(() => {
     if (equipment) {
-      setUpdatedEquipment(equipment); // Load data into state
+      setUpdatedEquipment(equipment);
     }
   }, [equipment]);
 

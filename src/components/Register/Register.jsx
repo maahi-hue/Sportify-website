@@ -56,7 +56,6 @@ const Register = () => {
       }
 
       const data = await response.json();
-      console.log("User created:", data);
 
       Swal.fire({
         icon: "success",
