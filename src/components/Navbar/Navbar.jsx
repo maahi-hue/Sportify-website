@@ -9,7 +9,9 @@ const Navbar = () => {
 
   useEffect(() => {
     if (user?.email) {
-      fetch(`http://localhost:5000/equipments?email=${user.email}`)
+      fetch(
+        `https://equi-sports-server-kappa.vercel.app/equipments?email=${user.email}`
+      )
         .then((response) => {
           if (!response.ok) {
             throw new Error("Failed to fetch equipment data");
@@ -145,7 +147,7 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="navbar-end">
-        {user ? (
+        {user?.email ? (
           <div className="flex justify-between items-center">
             <div className="dropdown dropdown-end">
               <div
@@ -155,8 +157,8 @@ const Navbar = () => {
               >
                 <div className="w-10 h-10 rounded-full overflow-hidden">
                   <img
-                    src={userDetails?.photoURL}
-                    title={userDetails?.displayName}
+                    src={user.photoURL}
+                    title={user.displayName}
                     className="object-cover w-full h-full"
                   />
                 </div>

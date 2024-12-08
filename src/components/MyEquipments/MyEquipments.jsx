@@ -12,7 +12,7 @@ const MyEquipments = () => {
     if (user?.email) {
       const fetchEquipment = async () => {
         const res = await fetch(
-          `http://localhost:5000/equipments?email=${user.email}`
+          `https://equi-sports-server-kappa.vercel.app/equipments?email=${user.email}`
         );
         const data = await res.json();
         setEquipmentList(data);
@@ -24,9 +24,12 @@ const MyEquipments = () => {
 
   const handleDelete = async () => {
     try {
-      const res = await fetch(`http://localhost:5000/equipments/${deleteId}`, {
-        method: "DELETE",
-      });
+      const res = await fetch(
+        `https://equi-sports-server-kappa.vercel.app/equipments/${deleteId}`,
+        {
+          method: "DELETE",
+        }
+      );
       if (res.ok) {
         setEquipmentList(equipmentList.filter((item) => item._id !== deleteId));
         setDeleteId(null);

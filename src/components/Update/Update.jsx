@@ -24,7 +24,7 @@ const Update = () => {
     const { _id, ...updatePayload } = updatedEquipment;
 
     const res = await fetch(
-      `http://localhost:5000/equipments/${equipment._id}`,
+      `https://equi-sports-server-kappa.vercel.app/equipments/${equipment._id}`,
       {
         method: "PUT",
         headers: {

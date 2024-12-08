@@ -20,7 +20,8 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
-        loader: () => fetch("http://localhost:5000/equipments/home"),
+        loader: () =>
+          fetch("https://equi-sports-server-kappa.vercel.app/equipments/home"),
       },
       {
         path: "/AddEquipments",
@@ -37,7 +38,8 @@ const router = createBrowserRouter([
             <AllEquipments></AllEquipments>
           </PrivateRoute>
         ),
-        loader: async () => fetch("http://localhost:5000/equipments"),
+        loader: async () =>
+          fetch("https://equi-sports-server-kappa.vercel.app/equipments"),
       },
       {
         path: "/details/:_id",
@@ -49,7 +51,7 @@ const router = createBrowserRouter([
         loader: async ({ params }) => {
           try {
             const response = await fetch(
-              `http://localhost:5000/equipments/${params._id}`
+              `https://equi-sports-server-kappa.vercel.app/equipments/${params._id}`
             );
             if (!response.ok) {
               throw new Error("Failed to fetch equipment details");
@@ -75,7 +77,7 @@ const router = createBrowserRouter([
         loader: async ({ params }) => {
           try {
             const response = await fetch(
-              `http://localhost:5000/equipments/${params._id}`
+              `https://equi-sports-server-kappa.vercel.app/equipments/${params._id}`
             );
             if (!response.ok) {
               throw new Error("Failed to fetch equipment details for update");

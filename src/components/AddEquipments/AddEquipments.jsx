@@ -41,7 +41,7 @@ const AddEquipments = () => {
       rating,
     };
 
-    fetch("http://localhost:5000/equipments", {
+    fetch("https://equi-sports-server-kappa.vercel.app/equipments", {
       method: "POST",
       headers: {
         "content-type": "application/json",
