@@ -15,19 +15,12 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Root></Root>,
-
     errorElement: <Errorpage></Errorpage>,
     children: [
       {
         path: "/",
         element: <Home />,
-        loader: async () => {
-          const response = await fetch("http://localhost:5000/equipments");
-          if (!response.ok) {
-            throw new Error("Failed to fetch equipments");
-          }
-          return response.json();
-        },
+        loader: () => fetch("http://localhost:5000/equipments/home"),
       },
       {
         path: "/AddEquipments",
@@ -44,7 +37,7 @@ const router = createBrowserRouter([
             <AllEquipments></AllEquipments>
           </PrivateRoute>
         ),
-        loader: () => fetch("http://localhost:5000/equipments"),
+        loader: async () => fetch("http://localhost:5000/equipments"),
       },
       {
         path: "/details/:_id",
@@ -54,11 +47,18 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: async ({ params }) => {
-          const res = await fetch(
-            `http://localhost:5000/equipments/${params._id}`
-          );
-          const data = await res.json();
-          return data;
+          try {
+            const response = await fetch(
+              `http://localhost:5000/equipments/${params._id}`
+            );
+            if (!response.ok) {
+              throw new Error("Failed to fetch equipment details");
+            }
+            return response.json();
+          } catch (error) {
+            console.error(error);
+            throw new Error("Failed to fetch equipment details");
+          }
         },
       },
       {
@@ -72,8 +72,20 @@ const router = createBrowserRouter([
       {
         path: "/update/:_id",
         element: <Update></Update>,
-        loader: async ({ params }) =>
-          fetch(`http://localhost:5000/equipments/${params._id}`),
+        loader: async ({ params }) => {
+          try {
+            const response = await fetch(
+              `http://localhost:5000/equipments/${params._id}`
+            );
+            if (!response.ok) {
+              throw new Error("Failed to fetch equipment details for update");
+            }
+            return response.json();
+          } catch (error) {
+            console.error(error);
+            throw new Error("Failed to fetch equipment details for update");
+          }
+        },
       },
       {
         path: "/login",
