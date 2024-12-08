@@ -13,9 +13,6 @@ const Navbar = () => {
         `https://equi-sports-server-kappa.vercel.app/equipments?email=${user.email}`
       )
         .then((response) => {
-          if (!response.ok) {
-            throw new Error("Failed to fetch equipment data");
-          }
           return response.json();
         })
         .then((data) => {

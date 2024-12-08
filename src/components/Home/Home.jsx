@@ -7,12 +7,14 @@ import SportsJourney from "../SportsJourney/SportsJourney";
 import { Slide } from "react-awesome-reveal";
 
 const Home = () => {
-  const equipments = useLoaderData();
+  const equipments = useLoaderData() || [];
   const [filteredEquipments, setFilteredEquipments] = useState(equipments);
 
   const categories = [
     "All",
-    ...new Set(equipments.map((equipment) => equipment.categoryName)),
+    ...(Array.isArray(equipments)
+      ? [...new Set(equipments.map((equipment) => equipment.categoryName))]
+      : []),
   ];
 
   const handleCategoryClick = (category) => {
@@ -25,9 +27,13 @@ const Home = () => {
     }
   };
 
+  if (!Array.isArray(equipments)) {
+    return <p>Error loading data. Please try again later.</p>;
+  }
+
   return (
     <div>
-      <Banner></Banner>
+      <Banner />
       <div className="bg-[#52796f] p-2">
         <Slide>
           <h1 className="text-3xl font-bold text-center mb-10">Equipments</h1>
@@ -41,7 +47,7 @@ const Home = () => {
               <li key={index}>
                 <button
                   onClick={() => handleCategoryClick(category)}
-                  className="w-full py-2 px-4 text-left font-semibold bg-base-100 rounded hover:bg-[#cad2c5] hover:text-[#2f3e46] "
+                  className="w-full py-2 px-4 text-left font-semibold bg-base-100 rounded hover:bg-[#cad2c5] hover:text-[#2f3e46]"
                 >
                   {category}
                 </button>
@@ -63,5 +69,4 @@ const Home = () => {
     </div>
   );
 };
-
 export default Home;
