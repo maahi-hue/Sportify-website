@@ -10,6 +10,8 @@ import Update from "../components/Update/Update";
 import Login from "../components/Login/Login";
 import Register from "../components/Register/Register";
 import PrivateRoute from "../components/PrivateRoute/PrivateRoute";
+import AboutUs from "../components/AboutUs/AboutUs";
+import ContactUs from "../components/ContactUs/ContactUs";
 
 const router = createBrowserRouter([
   {
@@ -96,6 +98,14 @@ const router = createBrowserRouter([
       {
         path: "/register",
         element: <Register></Register>,
+      },
+      {
+        path: "/about-us",
+        element: <AboutUs></AboutUs>,
+      },
+      {
+        path: "/contact-us",
+        element: <ContactUs></ContactUs>,
       },
     ],
   },

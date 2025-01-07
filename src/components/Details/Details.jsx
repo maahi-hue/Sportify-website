@@ -17,40 +17,58 @@ const Details = () => {
 
   return (
     <div className="m-20">
-      <div className="items-center flex flex-col  bg-base-100 shadow-xl">
-        <div className="">
-          <img src={image} alt={itemName} />
+      <div className="p-3 flex flex-col lg:flex-row bg-base-100 shadow-xl rounded-lg overflow-hidden">
+        <div className="lg:w-1/2">
+          <img
+            src={image}
+            alt={itemName}
+            className="w-full h-full object-cover"
+          />
         </div>
-        <div className="text-center">
-          <div>
-            <h2 className="">{itemName}</h2>
+
+        {/* Details Section */}
+        <div className="lg:w-1/2 p-6 flex flex-col justify-between">
+          <div className="mb-6">
+            <h2 className="text-3xl font-bold text-gray-800 mb-4">
+              {itemName}
+            </h2>
+            <p className="text-lg text-gray-600 mb-2">
+              <span className="font-semibold">Category: </span>
+              {categoryName}
+            </p>
+            <p className="text-lg text-gray-600 mb-4">
+              <span className="font-semibold">Description: </span>
+              {description}
+            </p>
           </div>
-          <div>
-            <p>{categoryName}</p>
-          </div>
-          <div>
-            <p>{description}</p>
-          </div>
-          <div>
-            <p>{price}</p>
-          </div>
-          <div>
-            <p>{customization}</p>
-          </div>
-          <div>
-            <p>{processingTime}</p>
-          </div>
-          <div>
-            <p>{stock}</p>
-          </div>
-          <div>
-            <p>{userEmail}</p>
-          </div>
-          <div>
-            <p>{userName}</p>
-          </div>
-          <div>
-            <p>{rating}</p>
+          <div className="grid grid-cols-2 gap-4 text-gray-700">
+            <p>
+              <span className="font-semibold">Price: </span>${price}
+            </p>
+            <p>
+              <span className="font-semibold">Customization: </span>
+              {customization}
+            </p>
+            <p>
+              <span className="font-semibold">Processing Time: </span>
+              {processingTime}
+            </p>
+            <p>
+              <span className="font-semibold">Stock: </span>
+              {stock}
+            </p>
+            <p>
+              <span className="font-semibold">Adder Email: </span>
+              {userEmail}
+            </p>
+            <p>
+              <span className="font-semibold">Added By: </span>
+              {userName}
+            </p>
+            <p>
+              <span className="font-semibold">Rating: </span>
+              {rating} ⭐
+            </p>
           </div>
         </div>
       </div>

@@ -1,3 +1,6 @@
+import { FaFacebookF, FaInstagram } from "react-icons/fa"; // Import icons
+import logo from "../../assets/logo.png";
+
 const Footer = () => {
   return (
     <div>
@@ -24,11 +27,36 @@ const Footer = () => {
       <footer className="footer bg-[#354f52] text-white border-base-300 border-t px-10 py-4">
         <aside className="mx-auto text-center">
           <p>
-            <strong>EquiSports Ltd.</strong>
+            <div className="navbar-start flex items-center justify-center w-full lg:w-auto">
+              <a className="btn btn-ghost text-xl flex justify-center items-center">
+                <img className="w-28" src={logo} alt="Sportify Logo"></img>
+                <p> Ltd.</p>
+              </a>
+            </div>
+            <strong></strong>
             <br />
             Your Trusted Partner in Quality Sports Equipment | Since 2024
           </p>
-          <p>© 2024 EquiSports Ltd. All rights reserved.</p>
+          <p>© 2024 Sportify Ltd. All rights reserved.</p>
+
+          <div className="flex mx-auto justify-center mt-4 space-x-6">
+            <a
+              href="https://www.facebook.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white text-2xl hover:text-[#cad2c5]"
+            >
+              <FaFacebookF />
+            </a>
+            <a
+              href="https://www.instagram.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white text-2xl hover:text-[#cad2c5]"
+            >
+              <FaInstagram />
+            </a>
+          </div>
         </aside>
       </footer>
     </div>

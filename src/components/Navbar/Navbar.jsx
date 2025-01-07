@@ -2,25 +2,34 @@ import { useEffect, useState, useContext } from "react";
 import { authContext } from "../AuthProvider/AuthProvider";
 import { NavLink } from "react-router-dom";
 import ThemeToggle from "../ThemeToggle/ThemeToggle";
+import logo from "../../assets/logo.png";
 
 const Navbar = () => {
   const { user, loading, handleLogout } = useContext(authContext);
   const [userDetails, setUserDetails] = useState(null);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
     if (user?.email) {
       fetch(
         `https://equi-sports-server-kappa.vercel.app/equipments?email=${user.email}`
       )
-        .then((response) => {
-          return response.json();
-        })
+        .then((response) => response.json())
         .then((data) => {
           setUserDetails(data);
         })
         .catch((error) => console.error("Error fetching equipments:", error));
     }
   }, [user]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 0);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   if (loading) {
     return (
@@ -31,7 +40,11 @@ const Navbar = () => {
   }
 
   return (
-    <div className="navbar bg-[#2f3e46] text-white">
+    <div
+      className={`navbar sticky top-0 z-50 ${
+        isScrolled ? "bg-opacity-80 bg-[#2f3e46]" : "bg-[#2f3e46]"
+      } transition-all duration-300 text-white`}
+    >
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -75,30 +88,43 @@ const Navbar = () => {
               All Sports Equipments
             </NavLink>
             <NavLink
-              to="/AddEquipments"
+              to="/about-us"
               className={({ isActive }) =>
                 isActive
                   ? "btn bg-[#cad2c5] font-bold text-[#2f3e46]"
                   : "btn bg-base-100 font-bold"
               }
             >
-              Add Equipment
+              About Us
             </NavLink>
             <NavLink
-              to="/MyEquipments"
+              to="/contact-us"
               className={({ isActive }) =>
                 isActive
                   ? "btn bg-[#cad2c5] font-bold text-[#2f3e46]"
                   : "btn bg-base-100 font-bold"
               }
             >
-              My Equipment List
+              Contact Us
+            </NavLink>
+            <NavLink
+              to="/support"
+              className={({ isActive }) =>
+                isActive
+                  ? "btn bg-[#cad2c5] font-bold text-[#2f3e46]"
+                  : "btn bg-base-100 font-bold"
+              }
+            >
+              Support
             </NavLink>
           </ul>
         </div>
-        <a className="btn btn-ghost text-xl">EquiSports</a>
-        <ThemeToggle></ThemeToggle>
+        <a className="btn btn-ghost text-xl">
+          <img className="w-40" src={logo} alt="Logo"></img>
+        </a>
+        <ThemeToggle />
       </div>
+
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1 space-x-2">
           <NavLink
@@ -122,27 +148,28 @@ const Navbar = () => {
             All Sports Equipments
           </NavLink>
           <NavLink
-            to="/AddEquipments"
+            to="/about-us"
             className={({ isActive }) =>
               isActive
                 ? "btn bg-[#cad2c5] font-bold text-[#2f3e46]"
                 : "btn bg-base-100 font-bold"
             }
           >
-            Add Equipment
+            About Us
           </NavLink>
           <NavLink
-            to="/MyEquipments"
+            to="/contact-us"
             className={({ isActive }) =>
               isActive
                 ? "btn bg-[#cad2c5] font-bold text-[#2f3e46]"
                 : "btn bg-base-100 font-bold"
             }
           >
-            My Equipment List
+            Contact Us
           </NavLink>
         </ul>
       </div>
+
       <div className="navbar-end">
         {user?.email ? (
           <div className="flex justify-between items-center">
@@ -160,13 +187,30 @@ const Navbar = () => {
                   />
                 </div>
               </div>
+              <ul
+                tabIndex={0}
+                className="dropdown-content menu bg-base-100 rounded-box w-52 p-2 shadow"
+              >
+                <NavLink
+                  to="/AddEquipments"
+                  className="btn bg-base-100 font-bold text-[#2f3e46] hover:bg-[#cad2c5] hover:text-[#2f3e46]"
+                >
+                  Add Equipment
+                </NavLink>
+                <NavLink
+                  to="/MyEquipments"
+                  className="btn bg-base-100 font-bold text-[#2f3e46] hover:bg-[#cad2c5] hover:text-[#2f3e46]"
+                >
+                  My Equipment List
+                </NavLink>
+                <button
+                  className="btn bg-base-100 font-bold text-[#2f3e46] hover:bg-[#cad2c5] hover:text-[#2f3e46]"
+                  onClick={handleLogout}
+                >
+                  Logout
+                </button>
+              </ul>
             </div>
-            <button
-              className="btn bg-base-100 hover:bg-[#cad2c5] font-bold hover:text-[#2f3e46]"
-              onClick={handleLogout}
-            >
-              Logout
-            </button>
           </div>
         ) : (
           <>
