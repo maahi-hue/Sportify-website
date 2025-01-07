@@ -219,11 +219,6 @@ const Navbar = () => {
                 Login
               </button>
             </NavLink>
-            <NavLink to="/register">
-              <button className="btn bg-base-100 hover:bg-[#cad2c5] font-bold hover:text-[#2f3e46]">
-                Register
-              </button>
-            </NavLink>
           </>
         )}
       </div>
