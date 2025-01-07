@@ -35,21 +35,13 @@ const router = createBrowserRouter([
       },
       {
         path: "/AllEquipments",
-        element: (
-          <PrivateRoute>
-            <AllEquipments></AllEquipments>
-          </PrivateRoute>
-        ),
+        element: <AllEquipments></AllEquipments>,
         loader: async () =>
           fetch("https://equi-sports-server-kappa.vercel.app/equipments"),
       },
       {
         path: "/details/:_id",
-        element: (
-          <PrivateRoute>
-            <Details></Details>
-          </PrivateRoute>
-        ),
+        element: <Details></Details>,
         loader: async ({ params }) => {
           try {
             const response = await fetch(

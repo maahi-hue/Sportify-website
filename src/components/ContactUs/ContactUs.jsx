@@ -38,44 +38,40 @@ const ContactUs = () => {
   };
 
   return (
-    <div className="bg-[#f4f7f6] p-8">
+    <div className=" p-8">
       <div className="container mx-auto text-center">
-        <h1 className="text-5xl font-extrabold text-[#2f3e46] mb-8">
-          Contact Us
-        </h1>
-        <p className="text-lg text-[#2f3e46] mb-12 max-w-4xl mx-auto">
+        <h1 className="text-5xl font-extrabold  mb-8">Contact Us</h1>
+        <p className="text-lg  mb-12 max-w-4xl mx-auto">
           We would love to hear from you! Whether you have a question,
           suggestion, or just want to say hi, feel free to reach out.
         </p>
 
         <div className="flex justify-center space-x-8 mb-16">
-          <div className="flex items-center space-x-4 p-6 bg-white shadow-lg rounded-xl w-64">
+          <div className="flex items-center space-x-4 p-6 border border-inherit shadow-lg rounded-xl w-64">
             <FaPhoneAlt className="text-4xl text-[#52796f]" />
             <div>
               <h3 className="text-2xl font-bold text-[#52796f]">Phone</h3>
-              <p className="text-lg text-[#2f3e46]">+1 (234) 567-890</p>
+              <p className="text-lg ">+1 (234) 567-890</p>
             </div>
           </div>
-          <div className="flex items-center space-x-4 p-6 bg-white shadow-lg rounded-xl w-64">
+          <div className="flex items-center space-x-4 p-6 border border-inherit shadow-lg rounded-xl w-64">
             <FaEnvelope className="text-4xl text-[#52796f]" />
             <div>
               <h3 className="text-2xl font-bold text-[#52796f]">Email</h3>
-              <p className="text-lg text-[#2f3e46]">contact@sportify.com</p>
+              <p className="text-lg ">contact@sportify.com</p>
             </div>
           </div>
-          <div className="flex items-center space-x-4 p-6 bg-white shadow-lg rounded-xl w-64">
+          <div className="flex items-center space-x-4 p-6 border border-inherit shadow-lg rounded-xl w-64">
             <FaMapMarkerAlt className="text-4xl text-[#52796f]" />
             <div>
               <h3 className="text-2xl font-bold text-[#52796f]">Address</h3>
-              <p className="text-lg text-[#2f3e46]">
-                123 Sports Avenue, Cityville, Country
-              </p>
+              <p className="text-lg ">123 Sports Avenue, Cityville, Country</p>
             </div>
           </div>
         </div>
 
         {/* Contact Form Section */}
-        <h2 className="text-4xl font-bold text-[#2f3e46] mb-8">Get in Touch</h2>
+        <h2 className="text-4xl font-bold  mb-8">Get in Touch</h2>
         <div className="bg-[#84a98c] p-8 rounded-lg shadow-xl text-white">
           <form
             ref={form}
@@ -88,7 +84,7 @@ const ContactUs = () => {
                 type="text"
                 name="from_name"
                 placeholder="Enter your full name"
-                className="w-full p-3 mt-2 rounded-lg bg-white text-[#2f3e46] border border-[#ddd]"
+                className="w-full p-3 mt-2 rounded-lg   border border-[#ddd]"
                 required
               />
             </div>
@@ -98,7 +94,7 @@ const ContactUs = () => {
                 type="email"
                 name="from_email"
                 placeholder="Enter your email"
-                className="w-full p-3 mt-2 rounded-lg bg-white text-[#2f3e46] border border-[#ddd]"
+                className="w-full p-3 mt-2 rounded-lg   border border-[#ddd]"
                 required
               />
             </div>
@@ -108,7 +104,7 @@ const ContactUs = () => {
                 name="message"
                 placeholder="Enter your message"
                 rows="5"
-                className="w-full p-3 mt-2 rounded-lg bg-white text-[#2f3e46] border border-[#ddd]"
+                className="w-full p-3 mt-2 rounded-lg   border border-[#ddd]"
                 required
               ></textarea>
             </div>

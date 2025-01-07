@@ -1,10 +1,10 @@
 # EquiSports
 
-**Live Site:** https://assignment-9-e8f79.web.app/
+**Live Site:** https://assignment-10-49f6b.web.app
 
 ## Overview
 
-EquiSports website offers a diverse and expansive database of high-quality equipment across various categories, making it easy for you to find, purchase, and manage your desired items. Whether you are looking to upgrade your gear, explore new equipment options, or simply manage your equipment needs, our site provides a seamless and secure experience. With features like real-time inventory updates, easy user management, and responsive customer support, we strive to deliver the best shopping experience for our users. Join our community today and make informed decisions with our extensive equipment listings and resources.
+Sportify website offers a diverse and expansive database of high-quality equipment across various categories, making it easy for you to find, purchase, and manage your desired items. Whether you are looking to upgrade your gear, explore new equipment options, or simply manage your equipment needs, our site provides a seamless and secure experience. With features like real-time inventory updates, easy user management, and responsive customer support, we strive to deliver the best shopping experience for our users. Join our community today and make informed decisions with our extensive equipment listings and resources.
 
 ## Features
 

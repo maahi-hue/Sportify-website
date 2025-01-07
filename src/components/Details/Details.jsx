@@ -29,19 +29,17 @@ const Details = () => {
         {/* Details Section */}
         <div className="lg:w-1/2 p-6 flex flex-col justify-between">
           <div className="mb-6">
-            <h2 className="text-3xl font-bold text-gray-800 mb-4">
-              {itemName}
-            </h2>
-            <p className="text-lg text-gray-600 mb-2">
+            <h2 className="text-3xl font-bold  mb-4">{itemName}</h2>
+            <p className="text-lg  mb-2">
               <span className="font-semibold">Category: </span>
               {categoryName}
             </p>
-            <p className="text-lg text-gray-600 mb-4">
+            <p className="text-lg  mb-4">
               <span className="font-semibold">Description: </span>
               {description}
             </p>
           </div>
-          <div className="grid grid-cols-2 gap-4 text-gray-700">
+          <div className="grid grid-cols-2 gap-4 ">
             <p>
               <span className="font-semibold">Price: </span>${price}
             </p>

@@ -5,7 +5,7 @@ const EquipmentCard = ({ equipment }) => {
 
   return (
     <div>
-      <div className="card bg-base-100 shadow-xl rounded-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300">
+      <div className="card border border-inherit bg-base-100 shadow-xl rounded-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300">
         <figure className="relative h-[150px] overflow-hidden">
           <img
             src={image}
@@ -15,7 +15,7 @@ const EquipmentCard = ({ equipment }) => {
         </figure>
         <div className="card-body p-4 text-center">
           <h2 className="text-xl font-bold mb-2">{itemName}</h2>
-          <p className="text-gray-600">Category: {categoryName}</p>
+          <p>Category: {categoryName}</p>
           <p className="text-lg font-semibold mb-4">Price: ${price}</p>
           <div className="card-actions">
             <NavLink to={`/details/${_id}`}>

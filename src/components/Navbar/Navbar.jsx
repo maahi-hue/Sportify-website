@@ -193,18 +193,18 @@ const Navbar = () => {
               >
                 <NavLink
                   to="/AddEquipments"
-                  className="btn bg-base-100 font-bold text-[#2f3e46] hover:bg-[#cad2c5] hover:text-[#2f3e46]"
+                  className="btn bg-base-100 font-bold  hover:bg-[#cad2c5] hover:text-[#2f3e46]"
                 >
                   Add Equipment
                 </NavLink>
                 <NavLink
                   to="/MyEquipments"
-                  className="btn bg-base-100 font-bold text-[#2f3e46] hover:bg-[#cad2c5] hover:text-[#2f3e46]"
+                  className="btn bg-base-100 font-bold  hover:bg-[#cad2c5] hover:text-[#2f3e46]"
                 >
                   My Equipment List
                 </NavLink>
                 <button
-                  className="btn bg-base-100 font-bold text-[#2f3e46] hover:bg-[#cad2c5] hover:text-[#2f3e46]"
+                  className="btn bg-base-100 font-bold  hover:bg-[#cad2c5] hover:text-[#2f3e46]"
                   onClick={handleLogout}
                 >
                   Logout

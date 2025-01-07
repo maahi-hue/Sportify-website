@@ -54,13 +54,24 @@ const Update = () => {
   };
 
   if (!updatedEquipment || !updatedEquipment._id) {
-    return <div>Loading...</div>; // Handle loading state
+    return <div>Loading...</div>;
   }
 
   return (
     <div className="m-10 p-10 bg-gray-100 shadow-lg rounded-lg">
       <h1 className="text-2xl font-bold mb-5">Update Equipment</h1>
       <form onSubmit={handleSubmit} className="space-y-5">
+        <div>
+          <label className="block mb-1 font-semibold">Image</label>
+          <input
+            type="text"
+            name="image"
+            value={updatedEquipment.image || ""}
+            onChange={handleChange}
+            className="w-full p-2 border rounded"
+            required
+          />
+        </div>
         <div>
           <label className="block mb-1 font-semibold">Item Name</label>
           <input

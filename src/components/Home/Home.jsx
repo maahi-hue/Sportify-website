@@ -6,6 +6,7 @@ import WhyChooseUs from "../WhyChooseUs/WhyChooseUs";
 import SportsJourney from "../SportsJourney/SportsJourney";
 import { Slide } from "react-awesome-reveal";
 import { NavLink } from "react-router-dom";
+import Testimonials from "../Testimonials/Testimonials";
 
 const Home = () => {
   const equipments = useLoaderData() || [];
@@ -49,7 +50,7 @@ const Home = () => {
           <div className="relative inline-block">
             <button
               onClick={() => setDropdownOpen((prev) => !prev)}
-              className="flex items-center bg-base-100 text-[#2f3e46] font-semibold py-2 px-4 rounded hover:bg-[#cad2c5]"
+              className="flex items-center bg-base-100 font-semibold py-2 px-4 rounded hover:bg-[#cad2c5]"
             >
               Categories
               <svg
@@ -107,32 +108,7 @@ const Home = () => {
       <WhyChooseUs />
       <SportsJourney />
       <div className="bg-[#cad2c5] p-7">
-        <Slide>
-          <h1 className="text-3xl font-bold text-center mb-6">
-            Customer Testimonials
-          </h1>
-        </Slide>
-        <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-6">
-          <div className="p-6 bg-white rounded shadow-md">
-            <p className="text-lg text-gray-600 italic">
-              "The quality of the equipment is outstanding. I'm so happy with my
-              purchase!"
-            </p>
-            <p className="text-right font-bold mt-4">- John Doe</p>
-          </div>
-          <div className="p-6 bg-white rounded shadow-md">
-            <p className="text-lg text-gray-600 italic">
-              "Excellent customer service and a great selection of sports gear."
-            </p>
-            <p className="text-right font-bold mt-4">- Jane Smith</p>
-          </div>
-          <div className="p-6 bg-white rounded shadow-md">
-            <p className="text-lg text-gray-600 italic">
-              "I found everything I needed for my team at unbeatable prices."
-            </p>
-            <p className="text-right font-bold mt-4">- Alex Brown</p>
-          </div>
-        </div>
+        <Testimonials></Testimonials>
       </div>
     </div>
   );
