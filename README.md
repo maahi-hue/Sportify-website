@@ -6,7 +6,7 @@
 
 ## 🌟 Overview  
 
-Sportify is your ultimate destination for exploring, purchasing, and managing high-quality sports equipment. With an extensive database across various categories, it’s easier than ever to find the gear you need. Whether you're an athlete, a coach, or a sports enthusiast, EquiSports offers a seamless and secure experience tailored for you.  
+Sportify is your ultimate destination for exploring, purchasing, and managing high-quality sports equipment. With an extensive database across various categories, it’s easier than ever to find the gear you need. Whether you're an athlete, a coach, or a sports enthusiast, Sportify offers a seamless and secure experience tailored for you.  
 
 Key features like **real-time inventory updates**, **user-friendly management tools**, and **responsive customer support** make it the perfect platform for all your sports equipment needs. Join our growing community and make informed decisions with confidence.  
 
@@ -33,6 +33,26 @@ Key features like **real-time inventory updates**, **user-friendly management to
 ### 5️⃣ **Responsive Customer Support**  
 - Get 24/7 assistance for all your queries.  
 - Whether it’s order tracking, technical issues, or product inquiries, our dedicated support team has you covered.  
+
+---
+
+## 🛠️ Technologies Used  
+
+EquiSports is built with modern and robust technologies to ensure a smooth and reliable experience:  
+
+- **Frontend**:  
+  - ![React](https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black)  
+  - ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-06B6D4?style=flat-square&logo=tailwind-css&logoColor=white)  
+
+- **Backend**:  
+  - ![Firebase](https://img.shields.io/badge/Firebase-FFCA28?style=flat-square&logo=firebase&logoColor=black)  
+
+- **Database**:  
+  - ![Firestore](https://img.shields.io/badge/Firestore-4285F4?style=flat-square&logo=google-cloud&logoColor=white)  
+
+- **Version Control & Deployment**:  
+  - ![Git](https://img.shields.io/badge/Git-F05032?style=flat-square&logo=git&logoColor=white)  
+  - ![GitHub](https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=github&logoColor=white)  
 
 ---
 
